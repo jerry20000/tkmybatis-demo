@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.sisyphe.demo.user.mapper.UserMapper">
+    <resultMap id="userResultMap" type="cn.sisyphe.demo.user.model.User">
+        <id property="id" column="id"/>
+        <result property="userName" column="user_name"/>
+        <result property="password" column="password"/>
+    </resultMap>
+
+    <select id="selectByUserExample" parameterType="string" resultMap="userResultMap">
+        SELECT * FROM demo_user WHERE user_name like CONCAT('%',#{sample},'%')
+    </select>
+
+</mapper>

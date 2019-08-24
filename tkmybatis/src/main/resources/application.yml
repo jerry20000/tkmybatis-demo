@@ -1,0 +1,46 @@
+server:
+  port: 8099
+  #context-path: /
+
+spring:
+  application:
+    name: demo-tkmybatis
+  profiles.active: test
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+mybatis:
+  type-aliases-package: package cn.sisyphe.demo.*.model
+  mapper-locations: classpath*:cn/sisyphe/demo/*/mapper/*.xml
+  #配置驼峰下划线
+  configuration:
+    map-underscore-to-camel-case: true
+
+mapper:
+  identity: MySQL
+  #mappers: cn.sisyphe.demo.core.base.mapper.BaseMapper
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+
+logging:
+  level:
+    cn.sisyphe.demo: debug
+
+---
+spring:
+  profiles: dev
+  datasource:
+    #initialize: false
+
+---
+spring:
+  profiles: test
+  datasource:
+    #initialize: true
+    url: 'jdbc:mysql://192.168.21.141:3306/demo_ly?useUnicode=true&characterEncoding=utf-8&useSSL=false'
+    username: root
+    password: 123456
